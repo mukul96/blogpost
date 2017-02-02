@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+<h1>All Blogs</h1>
+{{ for key,value in t.iteritems():}}
+    <h2>
+        
+{{=value['title']}}</h2><br>
+    <iframe width="560" height="315" src={{=value['video']}}  frameborder="0" allowfullscreen></iframe><br>
+    {{=value['data']}}<br>
+<br>
+{{ for k,v in u[key].iteritems():}}
+          {{=v}}<br>
+
+
+        {{pass}}
+<br>
+<br>
+{{ pass }}

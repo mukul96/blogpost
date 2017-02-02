@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+<h1>ADD YOUR BLOG</h1>
+<form method='POST' action={{=URL('default','add_blog_post')}} >
+<table>
+   <tr><td>Title:</td>
+    <td><input type='text' name="title" ></td></tr>
+    <tr><td>Data:</td>
+    <td><textarea rows="4" cols="50" input type="text" name="data"></textarea></td></tr>
+    
+    <tr><td>Image:</td>
+     <td><input type="text" name="video"></td></tr>
+   
+    </table>
+   
+    <input type='submit' name='submit'>
+   
+    </form>

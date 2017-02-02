@@ -1,0 +1,67 @@
+{{extend 'layout.html'}}
+<h1>All Blogs</h1>
+{{ for key,value in all_blog.iteritems():}}
+    <h2>
+        
+{{=value['title']}}</h2><br>
+    <iframe width="560" height="315" src={{=value['video']}}  frameborder="0" allowfullscreen></iframe><br>
+    {{=value['data']}}<br>
+<br>
+
+    {{ for k,v in all_comments[key].iteritems():}}
+          {{=v}}<br>
+
+
+        {{pass}}<br>
+    
+<br>
+    <form action={{=URL('add_comment')}} method='post' >
+        <input type='hidden' name='blog_id' value={{=key}} >
+        Comment:<input type='text' name='commented'>
+        <input type='submit' name='submit'>
+</form><br>
+
+{{if(y<1):}}
+
+
+<form action={{=URL('default','blog_like')}} method='post' >
+        <input type='hidden' name='blog_id' value={{=key}} >
+       
+        <input type='submit' name='like'>
+
+</form>
+{{else:}}
+{{pass}}
+<br>
+
+    {{ if auth.user.email==value['created_by']:}}
+        <form action={{=URL('default','edit_blog')}} method='POST'>
+            <input type='submit' name='edit' value='edit'>
+            <input type='hidden' name='title' value={{=value['title']}} >
+            <input type='hidden' name='video' value={{=value['video']}} >
+            <input type='hidden' name='data' value={{=value['data']}} >
+            <input type='hidden' name='blog_id' value={{=key}} >
+            
+            
+            
+                </form>
+ {{pass}}
+<br>
+{{ if auth.user.email==value['created_by']:}}
+        <form action={{=URL('default','delete_blog')}} method='POST'>
+            <input type='submit' name='delete' value='delete'>
+            <input type='hidden' name='title' value={{=value['title']}} >
+            <input type='hidden' name='video' value={{=value['video']}} >
+            <input type='hidden' name='data' value={{=value['data']}} >
+            <input type='hidden' name='blog_id' value={{=key}} >
+            
+            
+            
+                </form>
+ {{pass}}
+<form action={{=URL('blog_like')}} method='POST'>
+    <input type='submit' name='like' value='like'>
+</form>
+<br>
+<br>
+{{ pass }}

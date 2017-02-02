@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+<h1>edit blog</h1>
+<form method='POST' action={{=URL('default','edit_show')}} >
+<table>
+    <tr>
+        <td>
+            Title:
+        </td>
+        <td>
+            <input type="text" name="title" value={{=title}} >
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Data:
+        </td>
+        <td>
+            <textarea rows="4" cols="50" input type="text" name="data" value={{=data}}>
+                {{=data}}
+            </textarea>
+        </td>
+    </tr>
+    
+    <tr><td>Video:</td>
+     <td><input type="text" name="video" value={{=video}}></td></tr>
+   
+    </table>
+   
+    <input type='submit' name='submit'>
+   
+    </form>

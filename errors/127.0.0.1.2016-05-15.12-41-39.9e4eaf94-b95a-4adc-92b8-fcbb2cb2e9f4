@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.KeyError'> 'commment'"
+p3
+sS'layer'
+p4
+S'/home/mukul/web2py/applications/blogpost/controllers/default.py'
+p5
+sS'code'
+p6
+S"# -*- coding: utf-8 -*-\n# this file is released under public domain and you can use without limitations\n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################\nimport datetime\n\ndef user():\n    return dict(form=auth())\n    \n    \n    \ndef add_blog_post():\n    if request.post_vars['title'] != None:\n        blog_title = request.post_vars['title']\n        blog_data = request.post_vars['data']\n        x = request.post_vars['video']\n        y=x.split('=')        \n        \n        blog_date = datetime.datetime.now()\n        db.content.insert(title=blog_title\n                        ,data=blog_data\n                        ,video='https://www.youtube.com/embed/'+y[1]\n                        ,date_time=blog_date)\n        redirect(URL('show'))\n    return dict()\n    \n     \n    #redirect  show all blog posts usi particular user ke   \n\n    \n     \n@auth.requires_login()\ndef show():\n       imag=db().select(db.content.ALL,orderby=db.content.id)\n       if request.post_vars['comment_data']!=None:\n           comments=request.post_vars['comment_data']\n           db.comment.insert(data=comments)\n           commented=db(db.commment.blog_id==db.content.id).select(db.comment.ALL)\n       else:\n           commented=db(db.comment.blog_id==db.content.id).select(db.comment.ALL)\n       return dict(imag=imag ,x=commented)\n\nresponse._vars=response._caller(show)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/usr/lib/pymodules/python2.7/gluon/restricted.py", line 204, in restricted\n    exec ccode in environment\n  File "/home/mukul/web2py/applications/blogpost/controllers/default.py", line 49, in <module>\n  File "/usr/lib/pymodules/python2.7/gluon/globals.py", line 172, in <lambda>\n    self._caller = lambda f: f()\n  File "/usr/lib/pymodules/python2.7/gluon/tools.py", line 2533, in f\n    return action(*a, **b)\n  File "/home/mukul/web2py/applications/blogpost/controllers/default.py", line 44, in show\n    commented=db(db.commment.blog_id==db.content.id).select(db.comment.ALL)\n  File "/usr/lib/pymodules/python2.7/gluon/dal.py", line 5119, in __getattr__\n    return self[key]\n  File "/usr/lib/pymodules/python2.7/gluon/dal.py", line 5113, in __getitem__\n    return dict.__getitem__(self, str(key))\nKeyError: \'commment\'\n'
+p11
+s.

@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.TypeError'> 'builtin_function_or_method' object has no attribute '__getitem__'"
+p3
+sS'layer'
+p4
+S'/home/mukul/web2py/applications/blogpost/controllers/default.py'
+p5
+sS'code'
+p6
+S"# -*- coding: utf-8 -*-\n# this file is released under public domain and you can use without limitations\n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################\nimport datetime\n\ndef user():\n    return dict(form=auth())\n    \n    \n    \ndef add_blog_post():\n    if request.post_vars['title'] != None:\n        blog_title = request.post_vars['title']\n        blog_data = request.post_vars['data']\n        x = request.post_vars['video']\n        y=x.split('=')        \n        \n        blog_date = datetime.datetime.now()\n        db.content.insert(title=blog_title\n                        ,data=blog_data\n                        ,video='https://www.youtube.com/embed/'+y[1]\n                        ,date_time=blog_date)\n        redirect(URL('show'))\n    return dict()\n    \n     \n    #redirect  show all blog posts usi particular user ke   \n\n    \n     \n@auth.requires_login()\ndef show():\n       id1=[]\n       id1=db().select(db.content.id,orderby=db.content.id)\n       all_blog={}\n       for i in id1:\n           \n           x=db(db.content.id==id[i]).select(db.content.data)\n           all_blog[i]['data']=x\n           y=db(db.content.id==id1[i]).select(db.content.title)\n           all_blog[i]['title']=y\n           z=db(db.content.id==id1[i]).select(db.content.video)\n           all_blog[i]['video']=z\n           \n          \n           return dict(t=all_blog,a=id1)\n\nresponse._vars=response._caller(show)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/usr/lib/pymodules/python2.7/gluon/restricted.py", line 204, in restricted\n    exec ccode in environment\n  File "/home/mukul/web2py/applications/blogpost/controllers/default.py", line 55, in <module>\n  File "/usr/lib/pymodules/python2.7/gluon/globals.py", line 172, in <lambda>\n    self._caller = lambda f: f()\n  File "/usr/lib/pymodules/python2.7/gluon/tools.py", line 2533, in f\n    return action(*a, **b)\n  File "/home/mukul/web2py/applications/blogpost/controllers/default.py", line 45, in show\n    x=db(db.content.id==id[i]).select(db.content.data)\nTypeError: \'builtin_function_or_method\' object has no attribute \'__getitem__\'\n'
+p11
+s.

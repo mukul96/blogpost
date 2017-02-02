@@ -1,0 +1,9 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,True}}
+{{extend 'layout.html'}}
+
+<form method='POST' action={{=URL('default','index')}} accept='image.jpeg'>
+   Title: <input type='text' name="title" >
+    Data :<input type="text" name="data">
+    Image: <input type="file" name="image">
+    <input type='submit' name='submit'>
+    </form>

@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+<h1>This is the default/add_comment.html template</h1>
+<form action={{=URL('show'}} method='POST'>
+    Comment: <br><input type='text' name='commen'><br>
+        <input type='hidden' name='created_by'> <br>
+     <input type='submit' name='submit> <br>
+    
+</form>
+{{=BEAUTIFY(response._vars)}}
